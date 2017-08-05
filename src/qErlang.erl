@@ -845,19 +845,23 @@ byte_bool(<<0>>) -> false;
 byte_bool(<<1>>) -> true.
 
 %% converts 8 byte binary to either float or atom null
+bin_to_float_little(<<0,0,0,0,0,0,248,127>>) -> infinity;
 bin_to_float_little(<<0,0,0,0,0,0,248,255>>) -> null;
 bin_to_float_little(<<X:8/little-signed-float-unit:8>>) -> X.
 
 %% converts a floating point or null to corresponding 8 byte binary. Only little endian is supported as this is used in encoding only
+float_to_bin(infinity) -> <<0,0,0,0,0,0,248,127>>;
 float_to_bin(null) -> <<0,0,0,0,0,0,248,255>>;
 float_to_bin(X) -> <<X:8/little-signed-float-unit:8>>.
 
 %% converts 4 byte binary to either float or atom null
 bin_to_real_little(<<0,0,192,255>>) -> null;
+bin_to_real_little(<<0,0,192,127>>) -> infinity;
 bin_to_real_little(<<X:4/little-signed-float-unit:8>>) -> X.
 
 %% converts 4 byte floating point or null to corresponding binary
 real_to_bin(null) -> <<0,0,192,255>>;
+real_to_bin(infinity) -> <<0,0,192,127>>;
 real_to_bin(X) -> <<X:4/little-signed-float-unit:8>>.
 
 %% interprets a 4 byte binary as integer in given endian
