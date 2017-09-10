@@ -846,6 +846,7 @@ byte_bool(<<1>>) -> true.
 
 %% converts 8 byte binary to either float or atom null
 bin_to_float_little(<<0,0,0,0,0,0,248,127>>) -> infinity;
+bin_to_float_little(<<0,0,0,0,0,0,240,127>>) -> null;
 bin_to_float_little(<<0,0,0,0,0,0,248,255>>) -> null;
 bin_to_float_little(<<X:8/little-signed-float-unit:8>>) -> X.
 
