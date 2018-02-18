@@ -21,7 +21,7 @@
 -module(qErlang).
 
 -export [open/4,open/5,close/1,start_listener/1,tick_sub_listen/2,listen/2,handshake/2].
--export [peek/3,ipc_message/3].
+-export [peek/3,ipc_message/2,ipc_message/3].
 -export [async/2,async_raw/2,respond/2,sync/2,tick_send/3,sync_raw/3].
 -export [ipc_recv/1,ipc_recv/3,ipc_recv_raw/2].
 -export [time_to_int/2,date_to_int/1,int_to_date/1,datetime_to_float/2,timestamp_to_int/3,float_to_datetime/1,int_to_time/1,int_to_timestamp/1].
